@@ -1,0 +1,35 @@
+.new-tweet {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.new-tweet form {
+  display: flex;
+  flex-direction: column;
+}
+
+.new-tweet textarea {
+  height: 35px;
+  margin: 0.5em 0;
+  border: none;
+  outline: none;
+  border-bottom: 3px solid gray;
+  background-color: #f4f1ec;
+}
+
+.new-tweet div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.new-tweet button {
+  border: none;
+  background-color: #4056A1;
+  color: white;
+  font-family: 'Bungee', cursive;
+}
+
+.new-tweet output {
+  font-family: 'Bungee', cursive;
+}
