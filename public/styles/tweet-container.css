@@ -1,0 +1,24 @@
+article.tweet {
+  border: 3px solid gray;
+  margin: 1em 0;
+}
+
+article.tweet header {
+  display: flex;
+  padding: 1em;
+  margin: 0 10px;
+}
+
+article.tweet div.tweet-content{
+  border-bottom: 3px solid gray;
+  padding: 1em;
+  margin: 0 10px;
+}
+
+article.tweet footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1em;
+  margin: 0 10px;
+}
