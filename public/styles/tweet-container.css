@@ -1,6 +1,14 @@
 article.tweet {
   border: 3px solid gray;
   margin: 1em 0;
+  transition: 0.5s;
+}
+
+/* Show box shadow when hovered over */
+article.tweet:hover {
+  border: 3px solid gray;
+  margin: 1em 0;
+  box-shadow: 5px 10px gray;
 }
 
 article.tweet header {
@@ -21,4 +29,15 @@ article.tweet footer {
   align-items: center;
   padding: 0 1em;
   margin: 0 10px;
+}
+
+/* Space out the icons and give it a color transition time for hover */
+article.tweet footer div i {
+  padding: 6px;
+  transition: 0.3s;
+}
+
+/* Change color when hovering over icon */
+article.tweet footer div i:hover {
+  color: orangered;
 }
