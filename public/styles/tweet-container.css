@@ -1,14 +1,12 @@
 article.tweet {
-  border: 3px solid gray;
+  border: 4px solid gray;
   margin: 1em 0;
   transition: 0.5s;
 }
 
 /* Show box shadow when hovered over */
 article.tweet:hover {
-  border: 3px solid gray;
-  margin: 1em 0;
-  box-shadow: 5px 10px gray;
+  box-shadow: 5px 10px darkgray;
 }
 
 article.tweet header {

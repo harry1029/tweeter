@@ -2,6 +2,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: fixed;  /* Set navbar to fixed position */
+  top: 0;           /* Position navbar at top of the page */
+  width: 100%;
   height: 120px;
   padding-left: 1.5em;
   padding-right: 1.5em;
