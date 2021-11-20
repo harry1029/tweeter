@@ -10,7 +10,7 @@ $(document).ready(function() {
     // loops through tweets
     for (const tweet of tweets) {
       const $tweet = createTweetElement(tweet);      // calls createTweetElement for each tweet
-      $('#tweets-container').append($tweet);         // takes return value and appends it to the tweets container
+      $('#tweets-container').prepend($tweet);         // takes return value and appends it to the tweets container
     }
   }
 
@@ -56,7 +56,14 @@ $(document).ready(function() {
 
       const serialized = $('#tweet-text').serialize();
       // console.log(serialized);
-      $.post('/tweets', serialized);
+      $.post('/tweets', serialized);                                  // POST serialized data to server
+      $.getJSON('/tweets', function(tweet) {
+        const $tweet = createTweetElement(tweet.at(-1));              // Create tweet element from last position of the DOM
+        $('#tweets-container').prepend($tweet);                       // Prepend the created tweet in front of html container
+      })
+
+      $("#new-tweet-form").trigger("reset");                          // Reset form
+      $(".counter").text(140);                                        // Reset counter
     })
   })
 
@@ -67,7 +74,7 @@ $(document).ready(function() {
       dataType: 'json',
       success: (data) => {
         console.log('this request succeeded and here\'s the data', data);
-        renderTweets(data)
+        renderTweets(data);
       },
       error: (error) => {
         console.log('this request failed and this was the error', error);
