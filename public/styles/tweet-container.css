@@ -11,8 +11,20 @@ article.tweet:hover {
 
 article.tweet header {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 1em;
   margin: 0 10px;
+}
+
+article.tweet div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+article.tweet div img {
+  margin-right: 15px;
 }
 
 article.tweet div.tweet-content{
