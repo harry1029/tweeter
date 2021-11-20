@@ -62,9 +62,17 @@ $(document).ready(function() {
         </div>
       </footer>
     </article>`);
-
     return $tweet;
   }
+  // Listens to form submit and send serialized data to the server
+  $(function() {
+    $('#new-tweet-form').submit(function(event) {
+      event.preventDefault();
+      const serialized = $('#tweet-text').serialize();
+      // console.log(serialized);
+      $.post('/tweets', serialized);
+    })
+  })
 
 
   // Test / driver code (temporary)

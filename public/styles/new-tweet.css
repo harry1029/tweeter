@@ -32,6 +32,10 @@
   font-family: 'Bungee', cursive;
 }
 
+.new-tweet button:active {
+  transform: translateY(4px);
+}
+
 .new-tweet output {
   font-family: 'Bungee', cursive;
 }
