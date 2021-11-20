@@ -43,6 +43,17 @@ $(document).ready(function() {
   $(function() {
     $('#new-tweet-form').submit(function(event) {
       event.preventDefault();
+      // Check for empty string
+      if (!$('#tweet-text').val()) {
+        alert("Invalid entry!");
+        return;
+      }
+      // Check when when counter going pass limit
+      if ($('.counter').val() < 0) {
+        alert("Passed maximum allowed characters!")
+        return;
+      }
+
       const serialized = $('#tweet-text').serialize();
       // console.log(serialized);
       $.post('/tweets', serialized);
