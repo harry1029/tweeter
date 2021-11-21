@@ -9,9 +9,15 @@ $(document).ready(function() {
   const renderTweets = function(tweets) {
     // loops through tweets
     for (const tweet of tweets) {
-      const $tweet = createTweetElement(tweet);      // calls createTweetElement for each tweet
-      $('#tweets-container').prepend($tweet);         // takes return value and appends it to the tweets container
+      renderTweet(tweet);
     }
+  }
+
+  // Helper function that renders a single tweet
+  const renderTweet = function(tweet) {
+    const $tweet = createTweetElement(tweet);       // calls createTweetElement for each tweet
+    $('#tweets-container').prepend($tweet);         // takes return value and appends it to the tweets container
+    $("p.tw").first().text(tweet.content.text);     // Escape text to prevent XSS
   }
 
   /* Takes in tweet object and return a tweet <article> element */
@@ -26,7 +32,7 @@ $(document).ready(function() {
         ${tweet.user.handle}
       </header>
       <div class="tweet-content">
-        <p>${tweet.content.text}</p>
+        <p class="tw"></p>
       </div>
       <footer>
         <p>${timeago.format(tweet.created_at)}</p>
@@ -56,16 +62,30 @@ $(document).ready(function() {
 
       const serialized = $('#tweet-text').serialize();
       // console.log(serialized);
-      $.post('/tweets', serialized);                                  // POST serialized data to server
-      $.getJSON('/tweets', function(tweet) {
-        const $tweet = createTweetElement(tweet.at(-1));              // Create tweet element from last position of the DOM
-        $('#tweets-container').prepend($tweet);                       // Prepend the created tweet in front of html container
-      })
+      const post = $.post('/tweets', serialized);                               // POST serialized data to server
+      post.done(function() {                                                    // Calls render after POST to ensure last tweet is posted first
+        render();
+      });
 
-      $("#new-tweet-form").trigger("reset");                          // Reset form
-      $(".counter").text(140);                                        // Reset counter
+      $("#new-tweet-form").trigger("reset");                                    // Reset form
+      $(".counter").text(140);                                                  // Reset counter
     })
   })
+
+  const render = function() {
+    $.ajax({
+      url: '/tweets',
+      method: 'GET',
+      dataType: 'json',
+      success: (data) => {
+        console.log('this request succeeded and here\'s the data', data);
+        renderTweet(data.at(-1));
+      },
+      error: (error) => {
+        console.log('this request failed and this was the error', error);
+      }
+    });
+  }
 
   const loadTweets = function() {
     $.ajax({
