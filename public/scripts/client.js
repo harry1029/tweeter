@@ -49,14 +49,18 @@ $(document).ready(function() {
   $(function() {
     $('#new-tweet-form').submit(function(event) {
       event.preventDefault();
-      // Check for empty string
+      $('.error').css("display", "none");                                      // Reset position the error message after every click
+
+      // Check for empty string and show error message
       if (!$('#tweet-text').val()) {
-        alert("Invalid entry!");
+        $('.error > p').text("Please tweet something!");
+        $('.error').slideDown("slow");
         return;
       }
       // Check when when counter going pass limit
       if ($('.counter').val() < 0) {
-        alert("Passed maximum allowed characters!")
+        $('.error > p').text("Exceed character limit! Please keep below 140 characters!");
+        $('.error').slideDown("slow");
         return;
       }
 
