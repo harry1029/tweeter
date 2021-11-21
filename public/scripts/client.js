@@ -11,14 +11,14 @@ $(document).ready(function() {
     for (const tweet of tweets) {
       renderTweet(tweet);
     }
-  }
+  };
 
   // Helper function that renders a single tweet
   const renderTweet = function(tweet) {
     const $tweet = createTweetElement(tweet);       // calls createTweetElement for each tweet
     $('#tweets-container').prepend($tweet);         // takes return value and appends it to the tweets container
     $("p.tw").first().text(tweet.content.text);     // Escape text to prevent XSS
-  }
+  };
 
   /* Takes in tweet object and return a tweet <article> element */
   const createTweetElement = function(tweet) {
@@ -44,7 +44,7 @@ $(document).ready(function() {
       </footer>
     </article>`);
     return $tweet;
-  }
+  };
   // Listens to form submit and send serialized data to the server
   $(function() {
     $('#new-tweet-form').submit(function(event) {
@@ -73,8 +73,8 @@ $(document).ready(function() {
 
       $("#new-tweet-form").trigger("reset");                                    // Reset form
       $(".counter").text(140);                                                  // Reset counter
-    })
-  })
+    });
+  });
 
   const render = function() {
     $.ajax({
@@ -89,7 +89,7 @@ $(document).ready(function() {
         console.log('this request failed and this was the error', error);
       }
     });
-  }
+  };
 
   const loadTweets = function() {
     $.ajax({
@@ -104,7 +104,7 @@ $(document).ready(function() {
         console.log('this request failed and this was the error', error);
       }
     });
-  }
+  };
 
 
   // Test / driver code (temporary)
